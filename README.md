@@ -79,6 +79,22 @@ The contact form uses Formspree. To set it up:
 - Toast notifications for user feedback
 - Form validation and submission
 
+## Auth + Profile (Node.js)
+
+This project includes a lightweight, dependency-free Node.js server that provides:
+
+- `login.html`, `signup.html`, `profile.html`
+- API endpoints under `/api/*`
+- Local user storage at `.data/users.json`
+
+### Run with auth enabled
+1. Install Node.js (LTS)
+2. From this folder run: `node server.js`
+3. Open `http://localhost:5173`
+
+Optional (recommended): set a cookie-signing secret before running:
+`setx TECHVERSE_SESSION_SECRET "your-long-random-string"` (then restart terminal)
+
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
