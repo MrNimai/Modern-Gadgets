@@ -763,9 +763,9 @@ function renderCartPage() {
     for (var i = 0; i < cart.length; i++) {
         var item = cart[i];
 
-        itemsHtml +=
+            itemsHtml +=
             '<article class="cart-item">' +
-                (item.image ? '<div class="cart-thumb"><img src="' + item.image + '" alt="' + item.name + '" loading="lazy"></div>' : '<div class="cart-thumb ' + item.visual + '"></div>') +
+                (item.image ? '<div class="cart-thumb"><img src="' + resolveAssetPath(item.image) + '" alt="' + item.name + '" loading="lazy"></div>' : '<div class="cart-thumb ' + item.visual + '"></div>') +
                 '<div class="cart-item-copy">' +
                     "<h3>" + item.name + "</h3>" +
                     "<p>" + item.note + "</p>" +
