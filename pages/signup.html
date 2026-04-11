@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechVerse | Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>TechVerse | Sign up</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body data-page="login">
+<body data-page="signup">
     <header class="site-header">
         <div class="nav-wrap">
-            <a href="index.html" class="brand">
-                <img src="TechVerse digital logo design.png" alt="TechVerse Logo">
+            <a href="../index.html" class="brand">
+                <img src="../images/TechVerse digital logo design.png" alt="TechVerse Logo">
                 <span>TechVerse</span>
             </a>
 
             <nav class="nav-links" aria-label="Primary navigation">
-                <a href="index.html" data-nav-link="home">Home</a>
+                <a href="../index.html" data-nav-link="home">Home</a>
                 <a href="products.html" data-nav-link="products">Products</a>
                 <a href="about.html" data-nav-link="about">About</a>
                 <a href="contact.html" data-nav-link="contact">Contact</a>
@@ -34,7 +34,7 @@
         <div class="mobile-panel" id="mobilePanel">
             <div class="mobile-inner">
                 <nav class="mobile-links" aria-label="Mobile navigation">
-                    <a href="index.html" data-nav-link="home">Home</a>
+                    <a href="../index.html" data-nav-link="home">Home</a>
                     <a href="products.html" data-nav-link="products">Products</a>
                     <a href="about.html" data-nav-link="about">About</a>
                     <a href="contact.html" data-nav-link="contact">Contact</a>
@@ -49,24 +49,28 @@
     <main>
         <section class="auth-section">
             <div class="auth-card">
-                <h1>Welcome back</h1>
-                <p class="auth-subtext">Login to manage your profile.</p>
+                <h1>Create your account</h1>
+                <p class="auth-subtext">Sign up to save your profile details.</p>
 
-                <form class="auth-form" id="loginForm">
+                <form class="auth-form" id="signupForm">
+                    <label class="auth-label">
+                        Name (optional)
+                        <input class="auth-input" type="text" name="name" autocomplete="name">
+                    </label>
                     <label class="auth-label">
                         Email
                         <input class="auth-input" type="email" name="email" autocomplete="email" required>
                     </label>
                     <label class="auth-label">
                         Password
-                        <input class="auth-input" type="password" name="password" autocomplete="current-password" required>
+                        <input class="auth-input" type="password" name="password" autocomplete="new-password" minlength="6" required>
                     </label>
 
-                    <button class="auth-submit" type="submit">Login</button>
+                    <button class="auth-submit" type="submit">Sign up</button>
                     <p class="auth-hint">
-                        New here? <a href="signup.html">Create an account</a>
+                        Already have an account? <a href="login.html">Login</a>
                     </p>
-                    <p class="auth-error" id="loginError" aria-live="polite"></p>
+                    <p class="auth-error" id="signupError" aria-live="polite"></p>
                 </form>
             </div>
         </section>
@@ -78,12 +82,12 @@
         </div>
     </footer>
 
-    <script src="site.js"></script>
-    <script src="auth-client.js"></script>
+    <script src="../js/site.js"></script>
+    <script src="../js/auth-client.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
-            const form = document.getElementById("loginForm");
-            const errEl = document.getElementById("loginError");
+            const form = document.getElementById("signupForm");
+            const errEl = document.getElementById("signupError");
 
             try {
                 const me = await window.TechVerseAuth.me();
@@ -95,22 +99,22 @@
                 errEl.textContent = "";
                 const fd = new FormData(form);
                 const payload = {
+                    name: fd.get("name"),
                     email: fd.get("email"),
                     password: fd.get("password")
                 };
 
                 try {
-                    await window.TechVerseAuth.fetchJson("/api/auth/login", {
+                    await window.TechVerseAuth.fetchJson("/api/auth/signup", {
                         method: "POST",
                         body: JSON.stringify(payload)
                     });
                     window.location.href = "profile.html";
                 } catch (err) {
-                    errEl.textContent = err.message || "Login failed.";
+                    errEl.textContent = err.message || "Sign up failed.";
                 }
             });
         });
     </script>
 </body>
 </html>
-

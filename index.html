@@ -4,32 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neon Gadgets | Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="home">
     <header class="site-header">
         <div class="nav-wrap">
             <a href="index.html" class="brand">
-                <img src="TechVerse digital logo design.png" alt="TechVerse Logo">
+                <img src="images/TechVerse digital logo design.png" alt="TechVerse Logo">
                 <span>TechVerse</span>
             </a>
 
             <nav class="nav-links" aria-label="Primary navigation">
                 <a href="index.html" data-nav-link="home">Home</a>
-                <a href="products.html" data-nav-link="products">Products</a>
-                <a href="about.html" data-nav-link="about">About</a>
-                <a href="contact.html" data-nav-link="contact">Contact</a>
+                <a href="pages/products.html" data-nav-link="products">Products</a>
+                <a href="pages/about.html" data-nav-link="about">About</a>
+                <a href="pages/contact.html" data-nav-link="contact">Contact</a>
             </nav>
 
             <div class="nav-actions">
-                <form class="search-box" action="products.html" method="get" data-search-form>
+                <form class="search-box" action="pages/products.html" method="get" data-search-form>
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="m21 21-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z"></path>
                     </svg>
                     <input type="search" name="q" placeholder="Search gadgets" data-search-input>
                 </form>
 
-                <a href="cart.html" class="cart-btn" aria-label="Cart" data-cart-button>
+                <a href="pages/cart.html" class="cart-btn" aria-label="Cart" data-cart-button>
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M3 4h2l2.1 10.1a1 1 0 0 0 1 .8H18a1 1 0 0 0 1-.76L21 7H7.1"></path>
                         <circle cx="10" cy="20" r="1"></circle>
@@ -50,7 +50,7 @@
 
         <div class="mobile-panel" id="mobilePanel">
             <div class="mobile-inner">
-                <form class="search-box mobile-search" action="products.html" method="get" data-search-form>
+                <form class="search-box mobile-search" action="pages/products.html" method="get" data-search-form>
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="m21 21-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z"></path>
                     </svg>
@@ -59,10 +59,10 @@
 
                 <nav class="mobile-links" aria-label="Mobile navigation">
                     <a href="index.html" data-nav-link="home">Home</a>
-                    <a href="products.html" data-nav-link="products">Products</a>
-                    <a href="about.html" data-nav-link="about">About</a>
-                    <a href="contact.html" data-nav-link="contact">Contact</a>
-                    <a href="cart.html" data-nav-link="cart">Cart</a>
+                    <a href="pages/products.html" data-nav-link="products">Products</a>
+                    <a href="pages/about.html" data-nav-link="about">About</a>
+                    <a href="pages/contact.html" data-nav-link="contact">Contact</a>
+                    <a href="pages/cart.html" data-nav-link="cart">Cart</a>
                     <a href="login.html" data-nav-link="login">Login</a>
                     <a href="signup.html" data-nav-link="signup">Sign up</a>
                     <a href="profile.html" data-nav-link="profile">Profile</a>
@@ -83,7 +83,7 @@
                 <p class="hero-tag">Future of Everyday Tech</p>
                 <h1>Upgrade Your Tech with TechVerse</h1>
                 <p class="hero-subtext">Latest gadgets at unbeatable prices</p>
-                <a href="products.html" class="hero-cta">Shop Now</a>
+                <a href="pages/products.html" class="hero-cta">Shop Now</a>
             </div>
         </section>
 
@@ -92,7 +92,7 @@
     <footer class="site-footer">
         <div class="footer-wrap">
             <div class="footer-brand">
-                <img src="My Logo.png" alt="Neon Gadgets Logo" class="footer-logo">
+                <img src="images/My Logo.png" alt="Neon Gadgets Logo" class="footer-logo">
                 <div>
                     <strong>Neon Gadgets</strong>
                     <p>Future-ready gadgets with a premium neon vibe.</p>
@@ -101,9 +101,9 @@
 
             <nav class="footer-links" aria-label="Footer navigation">
                 <a href="index.html">Home</a>
-                <a href="products.html">Products</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
+                <a href="pages/products.html">Products</a>
+                <a href="pages/about.html">About</a>
+                <a href="pages/contact.html">Contact</a>
             </nav>
 
             <div class="social-links" aria-label="Social media links">
@@ -133,8 +133,8 @@
     </footer>
 
     <div class="toast" id="toast"></div>
-    <script src="products-data.js"></script>
-    <script src="site.js"></script>
-    <script src="auth-client.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/site.js"></script>
+    <script src="js/auth-client.js"></script>
 </body>
 </html>

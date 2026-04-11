@@ -5,6 +5,31 @@ var currentDetailQuantity = 1;
 var toastTimer = null;
 var PRODUCTS = Array.isArray(window.NEON_PRODUCTS) ? window.NEON_PRODUCTS : [];
 var PRODUCT_CATEGORIES = Array.isArray(window.NEON_PRODUCT_CATEGORIES) ? window.NEON_PRODUCT_CATEGORIES : [];
+var ASSET_PREFIX = (function() {
+    var path = String(window.location.pathname || "").replace(/\\/g, "/");
+    return path.indexOf("/pages/") !== -1 ? "../" : "";
+})();
+
+function resolveAssetPath(assetPath) {
+    var value = String(assetPath || "").trim();
+
+    if (!value) {
+        return "";
+    }
+
+    if (
+        value.indexOf("http://") === 0 ||
+        value.indexOf("https://") === 0 ||
+        value.indexOf("data:") === 0 ||
+        value.indexOf("/") === 0 ||
+        value.indexOf("../") === 0 ||
+        value.indexOf("./") === 0
+    ) {
+        return value;
+    }
+
+    return ASSET_PREFIX + value;
+}
 
 function saveToStorage(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
@@ -295,7 +320,7 @@ function createSpecHtml(specs) {
 
 function createProductCard(product) {
     return '\n        <article class="product-card" data-product-id="' + product.id + '">\n' +
-        '            ' + (product.image && product.image.match(/\.(png|jpg|jpeg|gif|webp)$/i) ? '<img src="' + product.image + '" alt="' + product.name + '" class="product-media">' : '<div class="product-media ' + product.visual + '"><span class="product-glow"></span></div>') + '\n' +
+        '            ' + (product.image && product.image.match(/\.(png|jpg|jpeg|gif|webp)$/i) ? '<img src="' + resolveAssetPath(product.image) + '" alt="' + product.name + '" class="product-media">' : '<div class="product-media ' + product.visual + '"><span class="product-glow"></span></div>') + '\n' +
         '            <div class="product-info">\n' +
         '                <div class="product-top">\n' +
         '                    <span class="product-badge">' + product.badge + "</span>\n" +
@@ -571,7 +596,7 @@ function renderProductDetailPage() {
     // Main image (first visual or image)
     var mainImageSrc = product.image || visuals[0];
     if (mainImageSrc.match(/\.(png|jpg|jpeg|gif|webp)$/i)) {
-        mainImageHtml = '<img src="' + mainImageSrc + '" alt="' + product.name + '" class="product-media detail-media">';
+        mainImageHtml = '<img src="' + resolveAssetPath(mainImageSrc) + '" alt="' + product.name + '" class="product-media detail-media">';
     } else {
         mainImageHtml = '<div class="product-media detail-media ' + mainImageSrc + '">' +
                             '<span class="product-glow"></span>' +
@@ -586,7 +611,7 @@ function renderProductDetailPage() {
             var thumbSrc = visuals[j];
             if (thumbSrc.match(/\.(png|jpg|jpeg|gif|webp)$/i)) {
                 thumbnailsHtml += '<button type="button" class="detail-thumbnail' + activeClass + '" data-visual="' + thumbSrc + '">' +
-                                    '<img src="' + thumbSrc + '" alt="' + product.name + ' view ' + (j+1) + '" class="thumbnail-media">' +
+                                    '<img src="' + resolveAssetPath(thumbSrc) + '" alt="' + product.name + ' view ' + (j+1) + '" class="thumbnail-media">' +
                                   '</button>';
             } else {
                 thumbnailsHtml += '<button type="button" class="detail-thumbnail' + activeClass + '" data-visual="' + thumbSrc + '">' +
@@ -668,13 +693,14 @@ function renderProductDetailPage() {
 
             if (mainMedia && visual) {
                 if (visual.match(/\.(png|jpg|jpeg|gif|webp)$/i)) {
+                    var resolvedVisual = resolveAssetPath(visual);
                     // If visual is an image path, update img src
                     if (mainMedia.tagName === 'IMG') {
-                        mainMedia.src = visual;
+                        mainMedia.src = resolvedVisual;
                     } else {
                         // If main is CSS, replace with img
                         var img = document.createElement('img');
-                        img.src = visual;
+                        img.src = resolvedVisual;
                         img.alt = product.name;
                         img.className = 'product-media detail-media';
                         mainMedia.parentNode.replaceChild(img, mainMedia);

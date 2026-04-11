@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Gadgets | Cart</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Neon Gadgets | Checkout</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body data-page="cart">
+<body data-page="checkout">
     <header class="site-header">
         <div class="nav-wrap">
-            <a href="index.html" class="brand">
-                <img src="My Logo.png" alt="TechVerse Logo">
+            <a href="../index.html" class="brand">
+                <img src="../images/My Logo.png" alt="TechVerse Logo">
                 <span>TechVerse</span>
             </a>
             <nav class="nav-links" aria-label="Primary navigation">
-                <a href="index.html" data-nav-link="home">Home</a>
+                <a href="../index.html" data-nav-link="home">Home</a>
                 <a href="products.html" data-nav-link="products">Products</a>
                 <a href="about.html" data-nav-link="about">About</a>
                 <a href="contact.html" data-nav-link="contact">Contact</a>
@@ -39,7 +39,7 @@
                     <input type="search" name="q" placeholder="Search gadgets" data-search-input>
                 </form>
                 <nav class="mobile-links" aria-label="Mobile navigation">
-                    <a href="index.html" data-nav-link="home">Home</a>
+                    <a href="../index.html" data-nav-link="home">Home</a>
                     <a href="products.html" data-nav-link="products">Products</a>
                     <a href="about.html" data-nav-link="about">About</a>
                     <a href="contact.html" data-nav-link="contact">Contact</a>
@@ -53,16 +53,49 @@
     </header>
 
     <main class="inner-main">
-        <section class="cart-section">
+        <section class="checkout-section">
             <div class="section-shell">
                 <div class="section-head">
-                    <p class="eyebrow">Your Cart</p>
-                    <h2>Review your neon-ready setup before checkout</h2>
-                    <p class="copy">Adjust quantities, remove items, and continue into checkout with the same Final Shop style flow.</p>
+                    <p class="eyebrow">Checkout</p>
+                    <h2>Complete your order with delivery details and secure test payment</h2>
+                    <p class="copy">This follows the same overall step from Final Shop, but styled to match the Neon Gadgets storefront.</p>
                 </div>
-                <div class="cart-layout-shell">
-                    <div class="cart-items" id="cartItems"></div>
-                    <aside class="cart-summary" id="cartSummary"></aside>
+                <div class="checkout-layout">
+                    <div class="checkout-form-shell">
+                        <a href="cart.html" class="detail-back-btn checkout-back-btn">Back to Cart</a>
+                        <form class="checkout-form" id="checkoutForm">
+                            <div class="checkout-block">
+                                <h3>Shipping Address</h3>
+                                <div class="checkout-field"><label for="checkout-full-name">Full Name</label><input id="checkout-full-name" class="checkout-input" type="text" name="fullName" placeholder="Enter your full name" required></div>
+                                <div class="checkout-field"><label for="checkout-email">Email</label><input id="checkout-email" class="checkout-input" type="email" name="email" placeholder="Enter your email" required></div>
+                                <div class="checkout-field"><label for="checkout-address">Address</label><input id="checkout-address" class="checkout-input" type="text" name="address" placeholder="Street address" required></div>
+                                <div class="checkout-grid triple">
+                                    <div class="checkout-field"><label for="checkout-city">City</label><input id="checkout-city" class="checkout-input" type="text" name="city" placeholder="City" required></div>
+                                    <div class="checkout-field"><label for="checkout-region">State / Region</label><input id="checkout-region" class="checkout-input" type="text" name="region" placeholder="State or region" required></div>
+                                    <div class="checkout-field"><label for="checkout-zip">ZIP Code</label><input id="checkout-zip" class="checkout-input" type="text" name="zipCode" placeholder="ZIP / postal code" required></div>
+                                </div>
+                            </div>
+                            <div class="checkout-block">
+                                <h3>Payment Information</h3>
+                                <p class="test-mode-notice">Test mode active. Use any valid-looking card details to place the order.</p>
+                                <div class="checkout-field"><label for="checkout-card">Card Number</label><input id="checkout-card" class="checkout-input" type="text" name="cardNumber" placeholder="4111 1111 1111 1111" required></div>
+                                <div class="checkout-grid">
+                                    <div class="checkout-field"><label for="checkout-expiry">Expiry Date</label><input id="checkout-expiry" class="checkout-input" type="text" name="expiryDate" placeholder="MM/YY" required></div>
+                                    <div class="checkout-field"><label for="checkout-cvv">CVV</label><input id="checkout-cvv" class="checkout-input" type="text" name="cvv" placeholder="123" required></div>
+                                </div>
+                            </div>
+                            <button type="submit" class="checkout-submit">Place Order</button>
+                        </form>
+                        <div class="empty-cart is-hidden" id="checkoutEmptyState">
+                            <p>Your cart is empty, so checkout is not ready yet.</p>
+                            <a href="products.html" class="product-btn">Continue Shopping</a>
+                        </div>
+                    </div>
+                    <aside class="checkout-summary-card">
+                        <h3>Order Summary</h3>
+                        <p class="checkout-summary-note">Review the gadgets in your order and confirm the totals before placing it.</p>
+                        <div id="checkoutSummary"></div>
+                    </aside>
                 </div>
             </div>
         </section>
@@ -75,7 +108,7 @@
                 <div><strong>Neon Gadgets</strong><p>Future-ready gadgets with a premium neon vibe.</p></div>
             </div>
             <nav class="footer-links" aria-label="Footer navigation">
-                <a href="index.html">Home</a>
+                <a href="../index.html">Home</a>
                 <a href="products.html">Products</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
@@ -90,8 +123,8 @@
     </footer>
 
     <div class="toast" id="toast"></div>
-    <script src="products-data.js"></script>
-    <script src="site.js"></script>
-    <script src="auth-client.js"></script>
+    <script src="../js/products-data.js"></script>
+    <script src="../js/site.js"></script>
+    <script src="../js/auth-client.js"></script>
 </body>
 </html>
